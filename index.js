@@ -31,32 +31,32 @@ var cumulativeOffset = function (element) {
 	};
 };
 
-// Function to position the arrow between two elements
 function positionArrowBetweenElements(startElem, endElem, arrowElem) {
 	// Get positions of the two elements
 	var posA = cumulativeOffset(startElem);
 	var posB = cumulativeOffset(endElem);
 
-	// Calculate the horizontal midpoint and distance between startElem and endElem
-	var middleY = (posA.top + posA.bottom) / 2 + window.scrollY; // Add vertical scroll offset
+	// Calculate the vertical midpoint of startElem
+	var middleY = (posA.top + posA.bottom) / 2;
+	// Calculate the horizontal distance between the two elements
 	var distanceX = posB.left - posA.right;
 
-	// Check if the arrow should point to the left or right
+	// Check if the arrow should point to the right or left
 	if (distanceX >= 0) {
 		// Right-facing arrow
 		arrowElem.style.width = distanceX + "px";
-		arrowElem.style.left = posA.right + window.scrollX + "px"; // Add horizontal scroll offset
+		arrowElem.style.left = posA.right + "px";
 		arrowElem.style.top = middleY - arrowElem.offsetHeight / 2 + "px";
-		arrowElem.classList.remove("left-arrow"); // Remove left arrow class if present
-		arrowElem.classList.add("right-arrow"); // Add right arrow class
+		arrowElem.classList.remove("left-arrow");
+		arrowElem.classList.add("right-arrow");
 	} else {
 		// Left-facing arrow
-		distanceX = posA.left - posB.right; // Calculate the distance for the left-facing arrow
+		distanceX = posA.left - posB.right;
 		arrowElem.style.width = distanceX + "px";
-		arrowElem.style.left = posB.right + window.scrollX + "px"; // Position from the left element
+		arrowElem.style.left = posB.right + "px";
 		arrowElem.style.top = middleY - arrowElem.offsetHeight / 2 + "px";
-		arrowElem.classList.remove("right-arrow"); // Remove right arrow class if present
-		arrowElem.classList.add("left-arrow"); // Add left arrow class
+		arrowElem.classList.remove("right-arrow");
+		arrowElem.classList.add("left-arrow");
 	}
 }
 
