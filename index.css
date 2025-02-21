@@ -1,0 +1,173 @@
+#git-diagram {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	text-align: center;
+	background-color: #f8f9fa;
+	padding: 2rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, sans-serif;
+}
+
+.git-title {
+	padding-bottom: 1.5rem;
+	font-size: 2.5rem;
+	font-weight: 600;
+	color: #222;
+}
+
+.git-subtitle {
+	padding-bottom: 1rem;
+	font-size: 1.5rem;
+	color: #555;
+	font-weight: 500;
+}
+
+#git-inner-diagram {
+	display: flex;
+	gap: 2rem;
+	margin-top: 1rem;
+}
+
+/* Container for each section */
+.git-container {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 8px;
+	padding: 1.5rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	border: 1px solid #eaeaea;
+}
+
+.git-inner-container {
+	display: flex;
+	place-items: center;
+	gap: 2rem;
+}
+
+.git-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	position: relative;
+}
+
+/* Adding borders between columns */
+.git-column:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	right: -1rem;
+	top: 0;
+	bottom: 0;
+	width: 1px;
+	background-color: #e0e0e0;
+}
+
+.git-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #f4f5f7;
+	color: #333;
+	font-weight: 500;
+	border-radius: 6px;
+	width: 8rem;
+	height: 4rem;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+	margin-bottom: 1rem;
+	border: 1px solid #e1e4e8;
+}
+
+.git-column > div:not(.git-box) {
+	height: 2rem;
+	padding-block: 0.5rem;
+}
+
+/* Arrow styling with less curved non-pointy end */
+.arrow {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem 1.5rem;
+	background-color: #0062cc;
+	color: white;
+	border-radius: 20px 5px 5px 20px; /* Less curved on the non-pointy end */
+	height: auto;
+	font-size: 0.875rem;
+	font-weight: 500;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease;
+}
+
+/* Arrow hover effect */
+.arrow:hover {
+	background-color: #004bb5;
+}
+
+.arrow:hover::after {
+	border-color: transparent transparent transparent #004bb5; /* Arrowhead matches body color on hover */
+}
+
+.left-arrow:hover::after {
+	border-color: transparent #004bb5 transparent transparent; /* Arrowhead matches body color on hover */
+}
+
+/* Right-facing arrow with less curve on the left (non-pointy) side */
+.right-arrow {
+	border-radius: 5px 0px 0px 5px; /* Less curved on the left, rounded on the right */
+}
+
+.right-arrow::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -32px;
+	margin-top: -16px;
+	border-width: 16px;
+	border-style: solid;
+	border-color: transparent transparent transparent #0062cc; /* Pointy on the right */
+	border-radius: 0; /* Ensure the pointy end is sharp */
+	transition: border-color 0.3s ease;
+}
+
+/* Left-facing arrow with less curve on the right (non-pointy) side */
+.left-arrow {
+	border-radius: 0px 5px 5px 0px; /* Less curved on the right, rounded on the left */
+}
+
+.left-arrow::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: -32px;
+	margin-top: -16px;
+	border-width: 16px;
+	border-style: solid;
+	border-color: transparent #0062cc transparent transparent; /* Pointy on the left */
+	border-radius: 0; /* Ensure the pointy end is sharp */
+	transition: border-color 0.3s ease;
+}
+
+/* [data-tippy-content] {
+    cursor: pointer;
+  } */
+
+.tippy-content {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, sans-serif;
+}
+
+.tippy-content code {
+	border-radius: 3px;
+	background-color: gray;
+	padding-block: 2px;
+	padding-inline: 3px;
+}
