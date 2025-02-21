@@ -32,16 +32,30 @@ var cumulativeOffset = function (element) {
 };
 
 function positionArrowBetweenElements(startElem, endElem, arrowElem) {
-	// Get positions of the two elements
+	// Get the container element (#git-diagram)
+	const container = document.getElementById("git-diagram");
+	const containerOffset = cumulativeOffset(container);
+
+	// Get positions of the two elements (in document coordinates)
 	var posA = cumulativeOffset(startElem);
 	var posB = cumulativeOffset(endElem);
 
-	// Calculate the vertical midpoint of startElem
+	// Adjust positions so they're relative to the container
+	posA.top -= containerOffset.top;
+	posA.bottom -= containerOffset.top;
+	posA.left -= containerOffset.left;
+	posA.right -= containerOffset.left;
+
+	posB.top -= containerOffset.top;
+	posB.bottom -= containerOffset.top;
+	posB.left -= containerOffset.left;
+	posB.right -= containerOffset.left;
+
+	// Calculate the vertical midpoint of the start element
 	var middleY = (posA.top + posA.bottom) / 2;
-	// Calculate the horizontal distance between the two elements
+	// Calculate horizontal distance between the two elements
 	var distanceX = posB.left - posA.right;
 
-	// Check if the arrow should point to the right or left
 	if (distanceX >= 0) {
 		// Right-facing arrow
 		arrowElem.style.width = distanceX + "px";
@@ -72,7 +86,6 @@ const arrows = [
 ];
 
 function updateArrows() {
-	console.log("updating");
 	// Update arrows for each arrow element
 	arrows.forEach(function (arrowName) {
 		const arrow = document.getElementById(arrowName);
