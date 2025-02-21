@@ -179,7 +179,7 @@ main {
 
 .tippy-content code {
 	border-radius: 3px;
-	background-color: gray;
+	background-color: rgb(94, 92, 106);
 	padding-block: 2px;
 	padding-inline: 3px;
 }

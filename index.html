@@ -31,7 +31,9 @@
 							<div class="git-column">
 								<div
 									class="git-box"
-									data-tippy-content="El directorio de trabajo donde editas y trabajas en tus archivos. Usa <code>git status</code> para ver los cambios"
+									data-tippy-content="The actual files and folders on your machine. 
+                                    Edits here are untracked until you add them to staging.<br><br>
+                                    Use <code>git status</code> to check which files are modified."
 								>
 									Working Tree
 								</div>
@@ -47,7 +49,9 @@
 							<div class="git-column">
 								<div
 									class="git-box"
-									data-tippy-content="Donde los cambios se preparan antes de ser commitearlos. Los archivos deben ser añadidos aquí antes de commitearlos en el repositorio local."
+									data-tippy-content="A holding area where you group changes for your next commit.<br><br>
+                                    Use <code>git status</code> to see which changes have been staged.
+                                    "
 								>
 									Staging Area
 								</div>
@@ -63,7 +67,9 @@
 							<div class="git-column">
 								<div
 									class="git-box"
-									data-tippy-content="Una rama en tu máquina local. Los commits en esta rama solo están disponibles para ti hasta que los envíes al repositorio remoto. Usa <code>git branch</code> para ver las ramas"
+									data-tippy-content="A specific line of commits in your local repository.
+                                    Commits in this branch don't affect other branches until merged.<br><br>
+                                    Use <code>git branch</code> to see what branches you have."
 								>
 									Local Branch
 								</div>
@@ -79,7 +85,8 @@
 							<div class="git-column">
 								<div
 									class="git-box"
-									data-tippy-content="Una referencia al estado de una rama en el repositorio remoto. Ayuda a rastrear cómo se veía la rama la última vez que se descargó"
+									data-tippy-content="A local record of the latest state of a branch on the remote repo.
+                                    It can be updated, but doesn't change your working files until you merge or rebase (see commands below)."
 								>
 									Remote-Tracking Ref.
 								</div>
@@ -105,7 +112,9 @@
 							<div class="git-column">
 								<div
 									class="git-box"
-									data-tippy-content="A branch stored on the remote repository. It represents the latest pushed state of a branch, but you need to fetch or pull to see updates."
+									data-tippy-content="A branch stored in the remote repository.
+                                    It represents the latest version of the branch on the server.
+                                    You can update your local copy of it, or update it (see commands below)."
 								>
 									Remote branch
 								</div>
@@ -125,62 +134,95 @@
 				<div
 					id="git-add"
 					class="arrow"
-					data-tippy-content="Mueve los cambios del directorio de trabajo a staging, dejandolos listos para un commit. Uso: <code>git add [archivo]</code> o <code>git add .</code> (para añadir todos los cambios)"
+					data-tippy-content="Stage changes from the working tree to the staging area, marking them as ready to be commited.
+                    <ul>
+                        <li><code>git add [file]</code> to stage a specific file.</li>
+                        <li><code>git add [directory]</code> to stage an entire directory.</li>
+                        <li><code>git add .</code> to stage all changes.</li>
+                    </ul>"
 				>
 					git add
 				</div>
 				<div
 					id="git-commit"
 					class="arrow"
-					data-tippy-content="Guarda los cambios del área de preparación en el repositorio local. Uso: <code>git commit -m 'mensaje'</code>"
+					data-tippy-content="Record a snapshot of staged changes in your local branch. Commits are your repository's history.
+                    A commit should have a message describing the changes made.
+                    <ul>
+                        <li><code>git commit -m &quot;message&quot;</code></li>
+                        <li><code>git commit</code> - (Opens a CLI editor for a detailed message</li>
+                    </ul>"
 				>
 					git commit
 				</div>
 				<div
 					id="git-push"
 					class="arrow"
-					data-tippy-content="Sube los commits locales a la rama correspondiente en el repositorio remoto, haciéndolos accesibles a otros. Uso: <code>git push</code>"
+					data-tippy-content="Upload your local commits to the equivalent branch in the remote repo, making them available to others.
+                    <ul><li><code>git push</code></li></ul>"
 				>
 					git push
 				</div>
 				<div
 					id="git-fetch"
 					class="arrow"
-					data-tippy-content="Descarga cambios del repositorio remoto, pero no los fusiona en tu rama local. Uso: <code>git fetch</code>"
+					data-tippy-content="Retrieve updates from the remote repo without merging. You can then compare and merge or rebase manually.
+                    It does not modify your working files or local branches.
+                    <ul><li><code>git fetch</code></li></ul>"
 				>
 					git fetch
 				</div>
 				<div
 					id="git-pull"
 					class="arrow"
-					data-tippy-content="Descarga actualizaciones del repositorio remoto y las fusiona inmediatamente en tu rama actual. Uso: <code>git pull</code>"
+					data-tippy-content="Fetch and immediately merge changes from the remote repo into your current local branch.
+                    If your branch has no local changes, Git may update it directly without creating a merge commit (fast-forward).
+                    Equivalent to <code>git fetch</code> + <code>git merge</code>.
+                    <ul>
+                        <li><code>git pull</code></li>
+                    </ul>"
 				>
 					git pull
 				</div>
 				<div
 					id="git-checkout"
 					class="arrow"
-					data-tippy-content="Cambia entre ramas o restaura archivos en tu directorio de trabajo. Uso: <code>git checkout [rama]</code> o <code>git checkout -b [nueva_rama]</code> para crear una nueva"
+					data-tippy-content="Switch to another branch or a specific commit. Often used before you start work or merge changes.
+                    <ul>
+                        <li><code>git checkout [branch]</code> - For an existing branch.</li>
+                        <li><code>git checkout -b [branch]</code> - To create a new one.</li>
+                    </ul>"
 				>
 					git checkout
 				</div>
 				<div
 					id="git-merge-local"
 					class="arrow"
-					data-tippy-content="Combina cambios de una rama en otra. Uso: <code>git merge [rama]</code> para fusionar o <code>git rebase [rama]</code> para reaplicar los cambios sobre otra rama"
+					data-tippy-content="Combine changes from another local branch into your current branch. Merge adds a merge commit, rebase reapplies commits linearly.
+                    If there are no new changes in your branch, Git may merge instantly without creating a merge commit.
+                    <ul>
+                        <li><code>git merge origin/[branch]</code> - Adds a &quot;merge commit&quot;</li>
+                        <li><code>git rebase origin/[branch]</code> - Moves your commits on top of the target branch, rewriting history.</li>
+                    </ul>"
 				>
 					git merge/rebase *
 				</div>
 				<div
 					id="git-merge-origin"
 					class="arrow"
-					data-tippy-content="Fusiona cambios desde la rama del repositorio remoto (generalmente origin) en tu rama local. Uso: <code>git merge origin/[rama]</code>"
+					data-tippy-content="Bring changes from a remote branch into your local branch.
+                    If there are no new changes in your branch, Git may merge instantly without creating a merge commit.
+                    <ul>
+                        <li><code>git merge origin/[branch]</code> - Creates a &quot;merge commit&quot;.</li>
+                        <li><code>git rebase origin/[branch]</code> - Moves your local commits on top of the latest changes from the remote branch.</li>
+                    </ul>"
 				>
 					git merge/rebase origin/*
 				</div>
 
 				<div id="signature">
-					By: Eric K. Github: <a href="https://github.com/Nyveon">@Nyveon</a>.
+					By: Eric K. <a href="https://github.com/Nyveon">github.com/Nyveon</a><br>
+                    Full git class (in spanish): <a href="https://nyveon.github.io/CC5408-Clase-Git/">slides</a>, <a href="https://www.youtube.com/watch?v=DwLlPWLbri4">video</a>.
 				</div>
 			</div>
 		</main>
